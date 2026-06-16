@@ -68,7 +68,7 @@ def dessiner(ecran: pygame.Surface):
 
     ecran.blit(grille, ((largeur-taille)//2, (hauteur-taille)//2))
 
-def dessiner_bouton(ecran: pygame.Surface, x: int, y: int, w: int, h: int, texte: str, fonction: Optional[callable]):
+def dessiner_bouton(ecran: pygame.Surface, x: int, y: int, w: int, h: int, texte: str, fonction: Optional[callable]): # pyright: ignore[reportGeneralTypeIssues]
     """Dessine un bouton avec le texte fourni qui appelle une fonction lors du clic."""
     global mouse_pos, buttons
     
@@ -135,9 +135,9 @@ while running:
             sudoku.generate_new_grid()
 
     dessiner_bouton(ecran, 50, 50, 150, 40, "Nouveau Jeu", new_game)
-    dessiner_bouton(ecran, 50, 100, 150, 40, "Réinitialiser", lambda: sudoku.reset())
-    dessiner_bouton(ecran, 50, 150, 150, 40, "Vérifier", lambda: sudoku.is_solution())
-    dessiner_bouton(ecran, 50, 200, 150, 40, "Résoudre", lambda: sudoku.resoudre())
+    dessiner_bouton(ecran, 50, 100, 150, 40, "Réinitialiser", sudoku.reset)
+    dessiner_bouton(ecran, 50, 150, 150, 40, "Vérifier", sudoku.is_solution)
+    dessiner_bouton(ecran, 50, 200, 150, 40, "Résoudre", sudoku.resoudre)
     dessiner_bouton(ecran, 50, 250, 150, 40, "Quitter", quit_app)
 
     if _dessiner_popup_pour_attentre_10_secondes:
